@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Stephen King - Αγορά Βιβλίου</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body style="background-color: #2c95c7;">
+  <table class="nav_bar">
+  <tr>
+    <td><a href="awards.html">Βραβεία και Κριτικές</a></td>
+    <td><a href="index.html">Αρχική</a></td>
+    <td><a href="cinema.html">Κινηματογράφος</a></td>
+  </tr>
+  <tr><td><a href="message.html" >Αποστολή Μηνύματος</a></td>
+      <td style="border: 0px;"></td>
+    <td><a href="payment.html">Αγορά Βιβλίου</td>
+  </tr>
+</table>
+<br><br><br>
+  <h2 style="color: #d8e257;"><em><u>Αγορά Βιβλίων</u></em></h2>
+  <p><b>Στοιχεία Παραγγελίας</b></p>
+<form>
+    <table class="order_table">
+    <tr><td><label for="time">Ημερομηνία :</label></td>
+    <td><input type="date" id="time"></td></tr>
+  <tr><td><label for="product">Τίτλος Βιβλίου<sup>*</sup> :</label></td>
+    <td><select id="product" required>
+        <optgroup label="Ο Μαύρος Πύργος">
+          <option selected>Ο Τελευταίος Πιστολέρο</option>
+          <option>Το Κάλεσμα Των Τριών</option>
+          <option>Οι Ρημαγμένοι Τόποι</option>
+          <option>Οι Λύκοι Της Κάλα</option>
+        </optgroup>
+        <option>Το Πράσινο Μίλι</option>
+      </select></td></tr>
+    <tr><td><label for="quantity">Αριθμός Αντιτύπων<sup>*</sup>:</label></td>
+      <td><input type="number" max="30" id="quantity" required></td></tr>
+    </table>
+    <fieldset style="border: 2px solid green;">
+      <legend>Στοιχεία Κάρτας</legend>
+      <table class="order_table">
+      <tr><td><label for="method">Επιλέξτε Τύπο Κάρτας<sup>*</sup> :</td>
+        <td><div style="font-weight: normal;">
+          <input type="radio" name="method" value="visa">VISA
+          <input type="radio" name="method" value="master">MASTERCARD
+          <input type="radio" name="method" value="ame_ex">AMERICAN EXPRESS
+        </td></tr></div>
+              <tr><td><label for="cd_num">Αριθμός Κάρτας<sup>*</sup>:</label></td>
+                <td><input type="text" id="cd_run" required></td></tr>
+                <tr><td><label for="holder_name">Όνομα Κατόχου<sup>*</sup>:</td>
+                  <td><input type="text" id="holder_name" required></td></tr>
+                <tr><td><label for="expiry">Ημερομηνία Λήξης<sup>*</sup>:</label></td>
+                  <td><input type="month" required></td></tr>
+                <tr><td><label for="sec_code">Κωδικός Ασφαλείας<sup>*</sup>:</label></td>
+                  <td><input type="text" size="3" maxlength="4" id="sec_code" required></td></tr>
+
+      </table>
+      </fieldset>
+    </table>
+<input type="reset" value="Εκκαθάριση Στοιχέιων"> <input type="submit" value="Αγορά">
+</form>
+</body>
+</html>
