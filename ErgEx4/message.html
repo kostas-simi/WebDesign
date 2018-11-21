@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Stephen King - Αποστολή μηνύματος</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+  <table class="nav_bar">
+  <tr>
+    <td><a href="awards.html">Βραβεία και Κριτικές</a></td>
+    <td><a href="index.html">Αρχική</a></td>
+    <td><a href="cinema.html">Κινηματογράφος</a></td>
+  </tr>
+  <tr><td><a href="message.html" >Αποστολή Μηνύματος</a></td>
+      <td style="border: 0px;"></td>
+    <td><a href="payment.html">Αγορά Βιβλίου</td>
+  </tr>
+</table>
+<br><br><br>
+<form class="contact">
+<b><div style="background-color: navy; color: white; text-align:center;">Φόρμα επικοινωνίας</div></b>
+<table class="cont_table">
+  <tr><td>
+<label for="name">Ονοματεπώνυμο<sup>*</sup> :</label></td>
+<td><input type="text" required id="name"></td></tr>
+
+<tr><td><label for="phone">Τηλέφωνο :</label></td>
+<td><input type="text" size="10" id="phone"></td></tr>
+
+<tr><td><label for="email">E-mail<sup>*</sup> :</label></td>
+<td><input type="email" id="email" required placeholder="your@email.com"></td></tr>
+
+<tr><td><label for="message">Αίτημα /<br> Ερώτημα<sup>*</sup> :</label></td>
+<td><textarea id="message" required cols="60" rows="8" >Συμπληρώστε το ερώτημα σας.</textarea></tr></td>
+
+</table>
+<input type="reset" value="Εκκαθάριση Στοιχέιων">
+ <input type="submit" value="Αποστολή" onclick="ClickMe()">
+</form>
+<script>
+    function CheckRequired(name,mail,mess,phone)
+    {
+      var exit = 0;
+      if (name === "") {
+        alert("Το πεδίο Ονοματεπώνυμο είναι υποχρεωτικό.");
+        exit = 1;
+      }
+      if (mail === ""){
+        alert("Το πεδίο E-mail είναι υποχρεωτικό.");
+        exit = 1;
+      }
+      if (mess == "Συμπληρώστε το ερώτημα σας."){
+        alert("Το πεδίο Αίτημα/Ερώτημα είναι υποχρεωτικό.");
+        exit = 1;
+      }
+
+      if (exit != 1){
+        var newWindow = window.open("")
+        newWindow.document.write("<h3 style='background-color: navy; color: white; text-align:center;'>Είστε σίγουροι για την αποστολή του παρακάτω e-mail?</h3>");
+        newWindow.document.write("<p><b>Ονοματεπώνυμο: </b>"+name+"</p>");
+        newWindow.document.write("<p><b>Τηλέφωνο: </b>"+phone+"</p>");
+        newWindow.document.write("<p><b>E-mail: </b>"+mail+"</p>");
+        newWindow.document.write("<p><b>Αίτημα/Ερώτημα: </b>"+mess+"</p>");
+        newWindow.document.write("<button id='send' onclick='mailWindow(mail,mess)'>Επιβεβαίωση</buton>");
+        newWindow.document.write("<button id='close' onclick='window.close()'>Ακύρωση</button>");
+      }
+
+
+
+      return exit;
+    }
+
+    function mailWindow(mail,message)
+    {
+      window.open('mailto:stephen.king@gmail.com');
+    }
+
+
+    function ClickMe()
+    {
+
+      //Χρησιμοποιώ την μεταβλητή ext_code για να επιβεβαιωσω στο κωδικα μου οτι δεν υπαρχουν κενα κελια φορμας.
+      var ext_code = CheckRequired(document.getElementById('name').value,document.getElementById('email').value,document.getElementById('message').value,document.getElementById('phone').value);
+
+    }
+
+</script>
+
+</body>
+</html>
