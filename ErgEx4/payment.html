@@ -23,32 +23,30 @@
   <p><b>Στοιχεία Παραγγελίας</b></p>
 <form>
     <table class="order_table">
-    <tr><td><label for="time">Ημερομηνία :</label></td>
-    <td><input type="date" id="time"></td></tr>
-  <tr><td><label for="product">Τίτλος Βιβλίου<sup>*</sup> :</label></td>
-    <td><select id="product" required>
-        <optgroup label="Ο Μαύρος Πύργος">
-          <option selected>Ο Τελευταίος Πιστολέρο</option>
-          <option>Το Κάλεσμα Των Τριών</option>
-          <option>Οι Ρημαγμένοι Τόποι</option>
-          <option>Οι Λύκοι Της Κάλα</option>
-        </optgroup>
-        <option>Το Πράσινο Μίλι</option>
+    <tr><td><label for="date">Ημερομηνία :</label></td>
+    <td><input type="text" id="date" ></td></tr>
+  <tr><td><label for="product">Αριθμός Τίτλων<sup>*</sup> :</label></td>
+    <td><select id="product" required onchange="change();">
+          <option value="a">Ο Τελευταίος Πιστολέρο</option>
+          <option value="b">Το Κάλεσμα Των Τριών</option>
+          <option value="c">Οι Ρημαγμένοι Τόποι</option>
+          <option value="d">Οι Λύκοι Της Κάλα</option>
+          <option value="e">Το Πράσινο Μίλι</option>
       </select></td></tr>
-    <tr><td><label for="quantity">Αριθμός Αντιτύπων<sup>*</sup>:</label></td>
-      <td><input type="number" max="30" id="quantity" required></td></tr>
+    <tr><td><label for="quantity">Αριθμός Αντιτύπων Τίτλων<sup>*</sup>:</label></td>
+      <td><input type="number"  value="0" min="0" id="quantity" onchange="change();"></td></tr>
     </table>
     <fieldset style="border: 2px solid green;">
       <legend>Στοιχεία Κάρτας</legend>
       <table class="order_table">
-      <tr><td><label for="method">Επιλέξτε Τύπο Κάρτας<sup>*</sup> :</td>
+      <tr><td><label for="payment_method">Επιλέξτε Τύπο Κάρτας<sup>*</sup> :</td>
         <td><div style="font-weight: normal;">
-          <input type="radio" name="method" value="visa">VISA
-          <input type="radio" name="method" value="master">MASTERCARD
-          <input type="radio" name="method" value="ame_ex">AMERICAN EXPRESS
+          <input type="radio" name="payment_method" value="visa">VISA
+          <input type="radio" name="payment_method" value="master">MASTERCARD
+          <input type="radio" name="payment_method" value="ame_ex">AMERICAN EXPRESS
         </td></tr></div>
               <tr><td><label for="cd_num">Αριθμός Κάρτας<sup>*</sup>:</label></td>
-                <td><input type="text" id="cd_run" required></td></tr>
+                <td><input type="text" id="cd_num" ></td></tr>
                 <tr><td><label for="holder_name">Όνομα Κατόχου<sup>*</sup>:</td>
                   <td><input type="text" id="holder_name" required></td></tr>
                 <tr><td><label for="expiry">Ημερομηνία Λήξης<sup>*</sup>:</label></td>
@@ -59,7 +57,89 @@
       </table>
       </fieldset>
     </table>
-<input type="reset" value="Εκκαθάριση Στοιχέιων"> <input type="submit" value="Αγορά">
+<input type="reset" value="Εκκαθάριση Στοιχέιων"> <input type="submit" value="Αγορά" onclick="ClickMe();">
 </form>
+<p id="sum"></p>
+<script>
+  function change()
+  {
+    pricing(document.getElementById('product').value,document.getElementById('quantity').value);
+  }
+
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //o ianourios einai to 0
+      var yyyy = today.getFullYear();
+
+      if(dd<10) {
+          dd = '0'+dd;
+      }
+
+      if(mm<10) {
+          mm = '0'+mm;
+      }
+
+      today = mm + '/' + dd + '/' + yyyy;
+      document.getElementById('date').value = today;
+
+
+    function CheckRequired(prod,quant)
+    {
+      if (prod == ""){
+        alert('Παρακαλούμε συμπληρώστε τα απαιτούμενα πεδία.');
+      }
+      if (quant == "0"){
+        alert('Παρακαλούμε συμπληρώστε τα απαιτούμενα πεδία.');
+      }
+    }
+
+
+
+    function ClickMe()
+    {
+      CheckRequired(document.getElementById('product').value,document.getElementById('quantity').value);
+      isNumber(document.getElementById('cd_num').value,document.getElementById('sec_code').value);
+    }
+
+    function isNumber(card,sec)
+    {
+      if (isNaN(card)){
+        alert('Το πεδίο Αριθμός Κάρτας δέχεται μόνο αριθμούς!');
+      }
+      if (isNaN(sec)){
+        alert('Το πεδίο Κωδικός Ασφαλείας δέχεται μόνο αριθμούς!');
+      }
+      if (sec.length > 3){
+        alert('Το πεδίο Κωδικός Ασφαλείας δέχεται μέχρι 3 ψηφία!');
+      }
+    }
+      function pricing(prod,quant)
+      {
+        var posot = parseInt(quant);
+        var price = 0;
+
+        if (prod == "a"){
+          price = 10;
+        }
+         if (prod == "b"){
+          price = 8;
+        }
+        if (prod == "c"){
+          price = 24;
+        }
+        if (prod == "d"){
+          price = 13;
+        }
+        if (prod == "e"){
+          price = 15;
+        }
+        var total = price * posot;
+        var taxed = total + total * 11/100;
+        result = ("<h3>Σύνολο: </h3>"+price+"*"+posot+"="+total+"euros + Φ.Π.Α.(11%)="+taxed+"euros.")
+        document.getElementById('sum').innerHTML = result;
+
+      }
+
+</script>
 </body>
 </html>

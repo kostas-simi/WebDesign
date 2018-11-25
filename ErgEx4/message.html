@@ -36,10 +36,11 @@
 <td><textarea id="message" required cols="60" rows="8" >Συμπληρώστε το ερώτημα σας.</textarea></tr></td>
 
 </table>
-<input type="reset" value="Εκκαθάριση Στοιχέιων">
+<input type="reset"  value="Εκκαθάριση Στοιχέιων">
  <input type="submit" value="Αποστολή" onclick="ClickMe()">
 </form>
 <script>
+
     function CheckRequired(name,mail,mess,phone)
     {
       var exit = 0;
@@ -57,13 +58,13 @@
       }
 
       if (exit != 1){
-        var newWindow = window.open("")
+        var newWindow = window.open("");
         newWindow.document.write("<h3 style='background-color: navy; color: white; text-align:center;'>Είστε σίγουροι για την αποστολή του παρακάτω e-mail?</h3>");
         newWindow.document.write("<p><b>Ονοματεπώνυμο: </b>"+name+"</p>");
         newWindow.document.write("<p><b>Τηλέφωνο: </b>"+phone+"</p>");
         newWindow.document.write("<p><b>E-mail: </b>"+mail+"</p>");
         newWindow.document.write("<p><b>Αίτημα/Ερώτημα: </b>"+mess+"</p>");
-        newWindow.document.write("<button id='send' onclick='mailWindow(mail,mess)'>Επιβεβαίωση</buton>");
+        newWindow.document.write("<button id='send' onclick='sendMail(mail,mess,phone);'>Επιβεβαίωση</buton>");
         newWindow.document.write("<button id='close' onclick='window.close()'>Ακύρωση</button>");
       }
 
@@ -72,17 +73,17 @@
       return exit;
     }
 
-    function mailWindow(mail,message)
-    {
-      window.open('mailto:stephen.king@gmail.com');
+    function sendMail(mail,mess,phone) {
+
+        var MailWindow = window.open("<a href='mailto:stephen.king@gmail.com'></a>");
+
     }
 
 
     function ClickMe()
     {
 
-      //Χρησιμοποιώ την μεταβλητή ext_code για να επιβεβαιωσω στο κωδικα μου οτι δεν υπαρχουν κενα κελια φορμας.
-      var ext_code = CheckRequired(document.getElementById('name').value,document.getElementById('email').value,document.getElementById('message').value,document.getElementById('phone').value);
+      CheckRequired(document.getElementById('name').value,document.getElementById('email').value,document.getElementById('message').value,document.getElementById('phone').value);
 
     }
 
